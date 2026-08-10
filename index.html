@@ -11,23 +11,27 @@
   <header>
     <h1>JOHN CHRISTIAN B ANINAO</h1>
     <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#education">Education</a>
+      <a class="nav-link" href="#contact">Contact</a>
     </nav>
   </header>
   <main>
+
     <section class="hero">
-      <h2>Hi, I'm a coder</h2>
+      <h2>Hi, I'm a developer</h2>
       <p>Welcome to my personal portfolio. I build web applications, solve problems, and create clean code with useful user experiences.</p>
     </section>
+
     <section id="about" class="about">
       <h2>About Me</h2>
       <div class="container about-text">
         <p>I am a self-driven developer working on front-end and back-end projects. I enjoy learning new tools, writing modular code, and sharing my work online.</p>
       </div>
     </section>
+
     <section id="projects" class="projects">
       <h2>Projects</h2>
       <div class="container project-grid">
@@ -35,16 +39,19 @@
           <h3>Project One</h3>
           <p>A responsive website built with HTML, CSS, and JavaScript.</p>
         </div>
+
         <div class="project-card">
           <h3>Project Two</h3>
           <p>An app prototype using dynamic data and clean layout components.</p>
         </div>
+        
         <div class="project-card">
           <h3>Project Three</h3>
           <p>A coding challenge solution with logic and user interface focus.</p>
         </div>
       </div>
     </section>
+
     <section id="skills" class="skills">
       <h2>Skills</h2>
       <div class="container">
@@ -57,13 +64,42 @@
         </ul>
       </div>
     </section>
+
+    <section id="education" class="education">
+      <h2>Education</h2>
+
+      <div class="container education-grid">
+        <div class="education-card">
+          <h3>College</h3>
+          <p title="Click to jump to University of Caloocan City"
+            onclick="window.open('https://ucc-caloocan.edu.ph/', '_blank')">
+            <b>University of Caloocan City</b>
+            <br>
+            Bachelor of Science in Computer Science
+          </p>
+        </div>
+
+        <div class="education-card">
+          <h3>Senior High School</h3>
+          <p title="Click to jump to Bernadette College of Valenzuela"
+            onclick="window.open('https://sbcv.edu.ph/', '_blank')">
+            <b>Bernadette College of Valenzuela</b>
+            <br>
+            Information and Communication Technology (ICT)
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact">
       <h2>Contact</h2>
       <div class="container">
-        <p>Email: example@domain.com</p>
+        <p><a href="mailto:aninaojohnchristian.work@gmail.com">Gmail</a></p>
         <p><a href="https://www.linkedin.com/in/john-christian-aninao/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
       </div>
     </section>
+
   </main>
+
 </body>
 </html>
