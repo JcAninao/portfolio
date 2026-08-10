@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jc Aninao Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 20px 40px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header nav {
+      margin-top: 10px;
+    }
+    header nav a {
+      color: #c7d2fe;
+      margin-right: 18px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .hero, .about, .projects, .skills, .contact {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .hero h2,
+    .about h2,
+    .projects h2,
+    .skills h2,
+    .contact h2 {
+      margin-top: 0;
+    }
+    .hero p {
+      font-size: 1.1rem;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #fafafa;
+    }
+    .project-card h3 {
+      margin: 0 0 10px;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skill-list li {
+      background-color: #e2e8f0;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.95rem;
+    }
+    .contact p {
+      margin: 0 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Hi, I'm a coder</h2>
+      <p>Welcome to my personal portfolio. I build web applications, solve problems, and create clean code with useful user experiences.</p>
+    </section>
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <div class="container about-text">
+        <p>I am a self-driven developer working on front-end and back-end projects. I enjoy learning new tools, writing modular code, and sharing my work online.</p>
+      </div>
+    </section>
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <div class="container project-grid">
+        <div class="project-card">
+          <h3>Project One</h3>
+          <p>A responsive website built with HTML, CSS, and JavaScript.</p>
+        </div>
+        <div class="project-card">
+          <h3>Project Two</h3>
+          <p>An app prototype using dynamic data and clean layout components.</p>
+        </div>
+        <div class="project-card">
+          <h3>Project Three</h3>
+          <p>A coding challenge solution with logic and user interface focus.</p>
+        </div>
+      </div>
+    </section>
+    <section id="skills" class="skills">
+      <h2>Skills</h2>
+      <div class="container">
+        <ul class="skill-list">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Node.js</li>
+        </ul>
+      </div>
+    </section>
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <div class="container">
+        <p>Email: example@domain.com</p>
+        <p>Find me on GitHub and LinkedIn.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
