@@ -87,6 +87,9 @@ main {
     margin-top: 0;
     margin: 0 0 10px;
 }
+.project-card p {
+    text-indent: 10px;
+}
 
 .skill-list {
     display: flex;
