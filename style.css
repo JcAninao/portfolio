@@ -14,51 +14,46 @@ header {
     background-color: #1e1e1e;
     color: #fff;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header nav {
-    margin-top: 10px;
-    display: flex;
-    gap: 30px;
-    margin-left: auto;
-}
-
-header nav a {
-    color: #c7d2fe;
-    /* margin-right: 18px; */
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-header nav a:hover {
-    text-decoration: underline;
+    padding: 0 50px;
+    min-height: 140px;
 }
 
 .profile-container {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    overflow: hidden;
+    width: 140px;
+    height: 140px;
     flex-shrink: 0;
-    margin-right: 20px;
+    overflow: hidden;
+    border-radius: 50%;
 }
+
 .profile-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-nav {  
+header h1 {
+    margin: 0 0 0 20px;
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+header nav {
     display: flex;
+    align-items: center;
     gap: 30px;
-    margin-bottom: 10px;
+    margin-left: auto;
+}
+
+header nav a {
+    color: #c7d2fe;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+header nav a:hover {
+    text-decoration: underline;
 }
 
 
