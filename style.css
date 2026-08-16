@@ -14,12 +14,12 @@ body {
     color: #EEEEEE;
 }
 
-body.project-expanded {
-    overflow: hidden;
-}
-
 a {
     color: #00ADB5;
+}
+
+button {
+    font-family: inherit;
 }
 
 header {
@@ -56,19 +56,36 @@ header h1 {
 header nav {
     display: flex;
     align-items: center;
-    gap: 30px;
     margin-left: auto;
+    position: relative;
 }
 
-header nav a {
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
     color: #EEEEEE;
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s ease;
 }
 
-header nav a:hover {
+.nav-links a:hover {
     color: #00ADB5;
+}
+
+.nav-menu-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #EEEEEE;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 5px 12px;
+    cursor: pointer;
 }
 
 main {
@@ -77,7 +94,6 @@ main {
     padding: 0 20px;
 }
 
-.hero,
 .about,
 .projects,
 .skills,
@@ -90,17 +106,12 @@ main {
     margin-bottom: 24px;
 }
 
-.hero h2,
 .about h2,
 .projects h2,
 .education h2,
 .skills h2,
 .contact h2 {
     margin-top: 0;
-}
-
-.hero p {
-    font-size: 1.1rem;
 }
 
 .about-text p {
@@ -111,6 +122,7 @@ main {
     --card-width: 420px;
     --card-height: 430px;
     --card-gap: 45px;
+    --side-scale: 0.84;
 
     position: relative;
     width: 100%;
@@ -135,17 +147,16 @@ main {
     position: relative;
     width: 100%;
     height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .carousel-card {
     position: absolute;
 
+    top: 50%;
+    left: 50%;
+
     width: var(--card-width);
-    min-height: var(--card-height);
+    height: var(--card-height);
 
     padding: 28px;
 
@@ -155,29 +166,32 @@ main {
     background-color: #EEEEEE;
     color: #222831;
 
-    transition:
-        transform 0.5s cubic-bezier(.22, .61, .36, 1),
-        opacity 0.4s ease,
-        filter 0.4s ease,
-        box-shadow 0.4s ease;
-
-    will-change: transform;
-
     display: flex;
     flex-direction: column;
 
     overflow: hidden;
+
+    transform-origin: center center;
+
+    transition:
+        transform 0.5s cubic-bezier(.22, .61, .36, 1),
+        opacity 0.5s ease,
+        filter 0.5s ease,
+        box-shadow 0.5s ease;
+
+    will-change: transform, opacity;
 }
 
 .carousel-card[data-position="center"] {
-    z-index: 3;
+    z-index: 5;
+
+    height: var(--card-height);
 
     transform:
-        translateX(0)
+        translate(-50%, -50%)
         scale(1);
 
     opacity: 1;
-
     filter: brightness(1);
 
     box-shadow:
@@ -185,33 +199,79 @@ main {
 }
 
 .carousel-card[data-position="left"] {
-    z-index: 2;
+    z-index: 3;
+
+    height: 80%;
 
     transform:
-        translateX(
-            calc(
-                -1 * (var(--card-width) + var(--card-gap))
-            )
+        translate(
+            calc(-50% - var(--card-width) - var(--card-gap)),
+            -50%
         )
-        scale(0.86);
+        scale(var(--side-scale));
 
     opacity: 0.62;
     filter: brightness(0.68);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-card[data-position="right"] {
-    z-index: 2;
+    z-index: 3;
+
+    height: 80%;
 
     transform:
-        translateX(
-            calc(
-                var(--card-width) + var(--card-gap)
-            )
+        translate(
+            calc(-50% + var(--card-width) + var(--card-gap)),
+            -50%
         )
-        scale(0.86);
+        scale(var(--side-scale));
 
     opacity: 0.62;
     filter: brightness(0.68);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-card[data-position="far-left"] {
+    z-index: 0;
+
+    height: 80%;
+
+    transform:
+        translate(
+            calc(-50% - 2 * (var(--card-width) + var(--card-gap))),
+            -50%
+        )
+        scale(var(--side-scale));
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.carousel-card[data-position="far-right"] {
+    z-index: 0;
+
+    height: 80%;
+
+    transform:
+        translate(
+            calc(-50% + 2 * (var(--card-width) + var(--card-gap))),
+            -50%
+        )
+        scale(var(--side-scale));
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.carousel-card.no-transition {
+    transition: none !important;
 }
 
 .project-number {
@@ -227,6 +287,7 @@ main {
     color: #222831;
     font-size: 1.35rem;
     line-height: 1.25;
+    padding-right: 35px;
 }
 
 .project-card p {
@@ -234,13 +295,34 @@ main {
     color: #393E46;
     font-size: 0.94rem;
     line-height: 1.65;
-    flex-grow: 1;
+
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+
     text-indent: 10px;
+    padding-right: 4px;
+}
+
+.project-card p::-webkit-scrollbar {
+    width: 5px;
+}
+
+.project-card p::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.project-card p::-webkit-scrollbar-thumb {
+    background-color: #00ADB5;
+    border-radius: 10px;
 }
 
 .project-link {
     display: inline-block;
     width: fit-content;
+    flex-shrink: 0;
+
     margin-top: 20px;
 
     color: #00ADB5;
@@ -266,6 +348,8 @@ main {
     top: 14px;
     right: 14px;
 
+    z-index: 10;
+
     width: 34px;
     height: 34px;
 
@@ -273,19 +357,15 @@ main {
     align-items: center;
     justify-content: center;
 
-    padding: 0;
-
     border: none;
     border-radius: 7px;
 
-    background-color: rgba(34, 40, 49, 0.08);
-    color: #393E46;
+    background-color: rgba(34, 40, 49, 0.12);
+    color: #222831;
 
-    font-size: 16px;
+    font-size: 17px;
 
     cursor: pointer;
-
-    z-index: 5;
 
     transition:
         background-color 0.2s ease,
@@ -300,81 +380,11 @@ main {
     transform: scale(1.08);
 }
 
-.expand-btn:active {
-    transform: scale(0.92);
-}
-
-.carousel-overlay {
-    position: fixed;
-    inset: 0;
-
-    z-index: 999;
-
-    background-color: rgba(34, 40, 49, 0.75);
-
-    backdrop-filter: blur(4px);
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition: opacity 0.25s ease;
-}
-
-.carousel-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.carousel-card.expanded {
-    position: fixed;
-
-    z-index: 1000;
-
-    top: 50%;
-    left: 50%;
-
-    width: min(700px, calc(100vw - 40px));
-
-    height: auto;
-    min-height: 0;
-
-    max-height: calc(100vh - 40px);
-
-    transform: translate(-50%, -50%) !important;
-
-    opacity: 1 !important;
-    filter: brightness(1) !important;
-
-    overflow-y: auto;
-
-    padding: 35px;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-card.expanded p {
-    flex-grow: 0;
-    max-height: none;
-    overflow: visible;
-    margin-bottom: 0;
-}
-
-.carousel-card.expanded .expand-btn {
-    background-color: #00ADB5;
-    color: #EEEEEE;
-}
-
-.carousel-card.expanded .expand-btn i::before {
-    content: "\f62a";
-}
-
 .carousel-btn {
     position: absolute;
-    z-index: 10;
 
     top: 50%;
-    transform: translateY(-50%);
+    z-index: 20;
 
     width: 44px;
     height: 44px;
@@ -386,12 +396,14 @@ main {
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(34, 40, 49, 0.7);
+    background-color: rgba(34, 40, 49, 0.72);
     color: #EEEEEE;
 
     font-size: 26px;
 
     cursor: pointer;
+
+    transform: translateY(-50%);
 
     backdrop-filter: blur(5px);
 
@@ -444,6 +456,10 @@ main {
     margin-bottom: 10px;
 }
 
+.education-card p {
+    cursor: pointer;
+}
+
 .skill-list {
     display: flex;
     flex-wrap: wrap;
@@ -470,43 +486,12 @@ main {
     color: #00ADB5;
 }
 
-.nav-menu-btn {
-    display: none;
-
-    border: none;
-    background: transparent;
-
-    color: #EEEEEE;
-
-    font-size: 2rem;
-    line-height: 1;
-
-    padding: 5px 12px;
-
-    cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.nav-menu-btn:hover {
-    color: #00ADB5;
-    transform: scale(1.1);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
 @media (max-width: 1200px) {
     header {
-        padding: 0 35px;
+        padding: 10px 35px;
     }
 
-    header nav {
+    .nav-links {
         gap: 22px;
     }
 
@@ -533,10 +518,6 @@ main {
         width: 120px;
         height: 120px;
         margin: 0 10px;
-    }
-
-    header nav {
-        gap: 16px;
     }
 
     .nav-menu-btn {
@@ -584,12 +565,6 @@ main {
         background-color: #393E46;
     }
 
-    header nav {
-        position: relative;
-        width: auto;
-        margin-left: auto;
-    }
-
     .project-carousel {
         --card-width: 360px;
         --card-height: 420px;
@@ -613,7 +588,7 @@ main {
     .project-carousel {
         --card-width: 340px;
         --card-height: 420px;
-        --card-gap: 35px;
+        --card-gap: 25px;
     }
 }
 
@@ -642,7 +617,6 @@ main {
 
         display: flex;
         justify-content: center;
-        align-items: center;
     }
 
     .nav-menu-btn {
@@ -688,7 +662,6 @@ main {
         padding: 0 10px;
     }
 
-    .hero,
     .about,
     .projects,
     .skills,
@@ -701,32 +674,14 @@ main {
     .project-carousel {
         --card-width: 300px;
         --card-height: 420px;
-        --card-gap: 85px;
+        --card-gap: 15px;
 
         height: 420px;
     }
 
-    .carousel-card[data-position="left"] {
-        transform:
-            translateX(
-                calc(
-                    -1 * (var(--card-width) + var(--card-gap))
-                )
-            )
-            scale(0.82);
-
-        opacity: 0.5;
-    }
-
+    .carousel-card[data-position="left"],
     .carousel-card[data-position="right"] {
-        transform:
-            translateX(
-                calc(
-                    var(--card-width) + var(--card-gap)
-                )
-            )
-            scale(0.82);
-
+        height: 80%;
         opacity: 0.5;
     }
 
@@ -744,10 +699,8 @@ main {
         right: 4px;
     }
 
-    .carousel-card.expanded {
-        width: calc(100vw - 30px);
-        max-height: calc(100vh - 30px);
-        padding: 28px;
+    .project-card p {
+        font-size: 0.9rem;
     }
 }
 
@@ -774,7 +727,6 @@ main {
         font-size: 0.85rem;
     }
 
-    .hero,
     .about,
     .projects,
     .skills,
@@ -787,7 +739,7 @@ main {
     .project-carousel {
         --card-width: 260px;
         --card-height: 410px;
-        --card-gap: 100px;
+        --card-gap: 5px;
 
         height: 410px;
     }
@@ -797,27 +749,9 @@ main {
         border-radius: 12px;
     }
 
-    .carousel-card[data-position="left"] {
-        transform:
-            translateX(
-                calc(
-                    -1 * (var(--card-width) + var(--card-gap))
-                )
-            )
-            scale(0.78);
-
-        opacity: 0.42;
-    }
-
+    .carousel-card[data-position="left"],
     .carousel-card[data-position="right"] {
-        transform:
-            translateX(
-                calc(
-                    var(--card-width) + var(--card-gap)
-                )
-            )
-            scale(0.78);
-
+        height: 80%;
         opacity: 0.42;
     }
 
@@ -830,26 +764,18 @@ main {
         line-height: 1.55;
     }
 
+    .expand-btn {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
     .carousel-btn {
         width: 36px;
         height: 36px;
         font-size: 20px;
         background-color: rgba(34, 40, 49, 0.8);
-    }
-
-    .carousel-card.expanded {
-        width: calc(100vw - 24px);
-        max-height: calc(100vh - 24px);
-        padding: 24px;
-    }
-
-    .expand-btn {
-        top: 10px;
-        right: 10px;
-
-        width: 32px;
-        height: 32px;
-
-        font-size: 14px;
     }
 }

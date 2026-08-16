@@ -33,22 +33,20 @@ const projects = [
 ];
 
 function getIndex(index) {
-    return (
-        (index % projects.length) +
-        projects.length
-    ) % projects.length;
+    return ((index % projects.length) + projects.length) % projects.length;
 }
 
-function createCard(project) {
+function createCard(project, position) {
     const card = document.createElement("article");
 
     card.className = "project-card carousel-card";
+    card.dataset.position = position;
 
     card.innerHTML = `
         <button
             class="expand-btn"
-            aria-label="Expand ${project.title}"
             type="button"
+            aria-label="Expand project"
         >
             <i class="bi bi-arrows-angle-expand"></i>
         </button>
@@ -88,216 +86,159 @@ function createCard(project) {
     return card;
 }
 
-function renderCards() {
-    const leftIndex = getIndex(currentIndex - 1);
-    const centerIndex = getIndex(currentIndex);
-    const rightIndex = getIndex(currentIndex + 1);
-
-    const indexes = [
-        leftIndex,
-        centerIndex,
-        rightIndex
-    ];
-
+function renderInitialCards() {
     track.innerHTML = "";
 
-    indexes.forEach((index, position) => {
-        const card = createCard(projects[index]);
+    const left = createCard(
+        projects[getIndex(currentIndex - 1)],
+        "left"
+    );
 
-        if (position === 0) {
-            card.dataset.position = "left";
-        }
+    const center = createCard(
+        projects[currentIndex],
+        "center"
+    );
 
-        if (position === 1) {
-            card.dataset.position = "center";
-        }
+    const right = createCard(
+        projects[getIndex(currentIndex + 1)],
+        "right"
+    );
 
-        if (position === 2) {
-            card.dataset.position = "right";
-        }
-
-        track.appendChild(card);
-    });
-
-    attachExpandButtons();
+    track.appendChild(left);
+    track.appendChild(center);
+    track.appendChild(right);
 }
 
-function nextProject() {
-    if (isAnimating) return;
+function updateCard(card, project) {
+    card.querySelector(".project-number").textContent =
+        project.number;
 
-    isAnimating = true;
+    card.querySelector("h3").textContent =
+        project.title;
 
-    const current = track.querySelector(
-        '[data-position="center"]'
-    );
+    card.querySelector("p").textContent =
+        project.description;
 
-    const right = track.querySelector(
-        '[data-position="right"]'
-    );
+    const oldLink =
+        card.querySelector(".project-link");
 
-    const left = track.querySelector(
-        '[data-position="left"]'
-    );
+    if (project.link) {
+        const link = document.createElement("a");
 
-    current.style.transform =
-        "translateX(calc(-1 * (var(--card-width) + var(--card-gap)))) scale(0.86)";
+        link.className = "project-link";
+        link.href = project.link;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = project.linkText;
 
-    current.style.opacity = "0.62";
+        oldLink.replaceWith(link);
+    } else {
+        const span = document.createElement("span");
 
-    right.style.transform =
-        "translateX(0) scale(1)";
+        span.className = "project-link";
+        span.textContent = project.linkText;
 
-    right.style.opacity = "1";
-
-    left.style.transform =
-        "translateX(calc(-2 * (var(--card-width) + var(--card-gap)))) scale(0.75)";
-
-    left.style.opacity = "0";
-
-    setTimeout(() => {
-        currentIndex = getIndex(currentIndex + 1);
-
-        renderCards();
-
-        isAnimating = false;
-    }, 500);
-}
-
-function previousProject() {
-    if (isAnimating) return;
-
-    isAnimating = true;
-
-    const current = track.querySelector(
-        '[data-position="center"]'
-    );
-
-    const left = track.querySelector(
-        '[data-position="left"]'
-    );
-
-    const right = track.querySelector(
-        '[data-position="right"]'
-    );
-
-    current.style.transform =
-        "translateX(calc(var(--card-width) + var(--card-gap))) scale(0.86)";
-
-    current.style.opacity = "0.62";
-
-    left.style.transform =
-        "translateX(0) scale(1)";
-
-    left.style.opacity = "1";
-
-    right.style.transform =
-        "translateX(calc(2 * (var(--card-width) + var(--card-gap)))) scale(0.75)";
-
-    right.style.opacity = "0";
-
-    setTimeout(() => {
-        currentIndex = getIndex(currentIndex - 1);
-
-        renderCards();
-
-        isAnimating = false;
-    }, 500);
-}
-
-function createOverlay() {
-    const overlay = document.createElement("div");
-
-    overlay.className = "carousel-overlay";
-
-    document.body.appendChild(overlay);
-
-    return overlay;
-}
-
-const overlay = createOverlay();
-
-function openExpandedProject(card) {
-    const existingCard =
-        document.querySelector(".carousel-card.expanded");
-
-    if (existingCard && existingCard !== card) {
-        existingCard.classList.remove("expanded");
+        oldLink.replaceWith(span);
     }
-
-    card.classList.add("expanded");
-
-    overlay.classList.add("active");
-
-    document.body.classList.add("project-expanded");
 }
 
-function closeExpandedProject() {
-    const expandedCard =
-        document.querySelector(".carousel-card.expanded");
+function moveNext() {
+    if (isAnimating) return;
 
-    if (!expandedCard) return;
+    isAnimating = true;
 
-    expandedCard.classList.remove("expanded");
+    const left =
+        track.querySelector('[data-position="left"]');
 
-    overlay.classList.remove("active");
+    const center =
+        track.querySelector('[data-position="center"]');
 
-    document.body.classList.remove("project-expanded");
-}
+    const right =
+        track.querySelector('[data-position="right"]');
 
-function attachExpandButtons() {
-    const expandButtons =
-        document.querySelectorAll(".expand-btn");
+    left.classList.add("no-transition");
 
-    expandButtons.forEach(button => {
-        button.addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
+    left.dataset.position = "far-right";
 
-            const card =
-                button.closest(".carousel-card");
+    currentIndex =
+        getIndex(currentIndex + 1);
 
-            if (!card) return;
+    updateCard(
+        left,
+        projects[getIndex(currentIndex + 1)]
+    );
 
-            if (card.classList.contains("expanded")) {
-                closeExpandedProject();
-            } else {
-                openExpandedProject(card);
-            }
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            left.classList.remove("no-transition");
+
+            left.dataset.position = "right";
+
+            center.dataset.position = "left";
+
+            right.dataset.position = "center";
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 520);
         });
     });
 }
 
-overlay.addEventListener(
-    "click",
-    closeExpandedProject
-);
+function movePrevious() {
+    if (isAnimating) return;
 
-document.addEventListener(
-    "keydown",
-    event => {
-        if (event.key === "Escape") {
-            closeExpandedProject();
-        }
-    }
-);
+    isAnimating = true;
+
+    const left =
+        track.querySelector('[data-position="left"]');
+
+    const center =
+        track.querySelector('[data-position="center"]');
+
+    const right =
+        track.querySelector('[data-position="right"]');
+
+    right.classList.add("no-transition");
+
+    right.dataset.position = "far-left";
+
+    currentIndex =
+        getIndex(currentIndex - 1);
+
+    updateCard(
+        right,
+        projects[getIndex(currentIndex - 1)]
+    );
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            right.classList.remove("no-transition");
+
+            right.dataset.position = "left";
+
+            center.dataset.position = "right";
+
+            left.dataset.position = "center";
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 520);
+        });
+    });
+}
 
 carousel
     .querySelector(".carousel-next")
-    .addEventListener(
-        "click",
-        nextProject
-    );
+    .addEventListener("click", moveNext);
 
 carousel
     .querySelector(".carousel-prev")
-    .addEventListener(
-        "click",
-        previousProject
-    );
+    .addEventListener("click", movePrevious);
 
 carousel.addEventListener(
     "wheel",
-    function (event) {
+    event => {
         if (
             Math.abs(event.deltaX) <=
             Math.abs(event.deltaY)
@@ -307,19 +248,21 @@ carousel.addEventListener(
 
         event.preventDefault();
 
-        if (wheelLocked) return;
+        if (wheelLocked || isAnimating) {
+            return;
+        }
 
         wheelLocked = true;
 
         if (event.deltaX > 0) {
-            nextProject();
+            moveNext();
         } else {
-            previousProject();
+            movePrevious();
         }
 
         setTimeout(() => {
             wheelLocked = false;
-        }, 500);
+        }, 520);
     },
     {
         passive: false
@@ -331,13 +274,7 @@ let touchStartY = 0;
 
 carousel.addEventListener(
     "touchstart",
-    function (event) {
-        if (
-            event.target.closest(".expand-btn")
-        ) {
-            return;
-        }
-
+    event => {
         touchStartX =
             event.touches[0].clientX;
 
@@ -351,7 +288,7 @@ carousel.addEventListener(
 
 carousel.addEventListener(
     "touchend",
-    function (event) {
+    event => {
         const touchEndX =
             event.changedTouches[0].clientX;
 
@@ -376,9 +313,9 @@ carousel.addEventListener(
         }
 
         if (differenceX < 0) {
-            nextProject();
+            moveNext();
         } else {
-            previousProject();
+            movePrevious();
         }
     },
     {
@@ -395,9 +332,7 @@ const navLinks =
 if (navMenuButton && navLinks) {
     navMenuButton.addEventListener(
         "click",
-        event => {
-            event.stopPropagation();
-
+        () => {
             navLinks.classList.toggle("active");
         }
     );
@@ -408,9 +343,7 @@ if (navMenuButton && navLinks) {
             link.addEventListener(
                 "click",
                 () => {
-                    navLinks.classList.remove(
-                        "active"
-                    );
+                    navLinks.classList.remove("active");
                 }
             );
         });
@@ -422,12 +355,10 @@ if (navMenuButton && navLinks) {
                 !navLinks.contains(event.target) &&
                 !navMenuButton.contains(event.target)
             ) {
-                navLinks.classList.remove(
-                    "active"
-                );
+                navLinks.classList.remove("active");
             }
         }
     );
 }
 
-renderCards();
+renderInitialCards();
