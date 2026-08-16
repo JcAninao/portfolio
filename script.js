@@ -19,7 +19,7 @@ const projects = [
         title: "Slapnote",
         description:
             "A full-stack social networking web application designed to facilitate user interaction and content sharing. The platform features user authentication, profile management, post creation, image sharing, comments, reactions, and user interactions. The project provided hands-on experience in integrating the frontend, backend APIs, and database while developing practical skills in full-stack web development and backend architecture.",
-        linkText: "Full-Stack Project",
+        linkText: "Personal Project",
         link: null
     },
     {
@@ -43,13 +43,15 @@ function createCard(project, position) {
     card.dataset.position = position;
 
     card.innerHTML = `
-        <button
+        <<button
             class="expand-btn"
             type="button"
             aria-label="Expand project"
+            title="Expand project"
         >
             <i class="bi bi-arrows-angle-expand"></i>
         </button>
+
 
         <div class="project-number">
             ${project.number}

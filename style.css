@@ -198,6 +198,11 @@ main {
         0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
+.carousel-card[data-position="left"] p::-webkit-scrollbar, 
+.carousel-card[data-position="right"] p::-webkit-scrollbar {
+    display: none;
+}
+
 .carousel-card[data-position="left"] {
     z-index: 3;
 
