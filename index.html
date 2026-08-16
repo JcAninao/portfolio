@@ -2,35 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="My personal portfolio showcasing my projects, skills, and experience.">
   <title>Jc Aninao Portfolio</title>
+
   <link rel="stylesheet" href="style.css">
+
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
   <header>
     <div class="profile-container">
-        <img src="images/profile_img.png" alt="Jc Aninao's picture">
+      <img src="images/profile_img.png" alt="Jc Aninao's picture">
     </div>
 
-    <!-- <div class="header-content"> -->
-        <h1>JOHN CHRISTIAN B ANINAO</h1>
-        
-        <nav>
-          <a class="nav-link" href="#about">About</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#skills">Skills</a>
-          <a class="nav-link" href="#education">Education</a>
-          <a class="nav-link" href="#contact">Contact</a>
-        </nav>
-    <!-- </div> -->
-</header>
+    <h1>JOHN CHRISTIAN B ANINAO</h1>
+
+    <nav>
+      <button class="nav-menu-btn" aria-label="Open navigation">
+        ⋯
+      </button>
+
+      <div class="nav-links">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+
+  </header>
 
   <main>
 
     <section id="about" class="about">
-      <!-- <h2>About Me</h2> -->
       <div class="container about-text">
         <p>Welcome to my personal portfolio. I build web applications, solve problems, and create clean code with useful user experiences.</p>
         <p>I am a self-driven developer working on front-end and back-end projects. I enjoy learning new tools, writing modular code, and sharing my work online.</p>
@@ -40,49 +52,115 @@
     <section id="projects" class="projects">
       <h2>Projects</h2>
 
-      <div class="container project-grid">
+      <div class="project-carousel" id="projectCarousel">
 
-        <div class="project-card">
-          <h3 title="Enterprise Resource Planning | Sunshine Multiplus Corp"
-              onclick="window.open('https://www.linkedin.com/company/smpc-pumps/', '_blank')">
-            ERP | On The Job Training
-          </h3>
+        <button class="carousel-btn carousel-prev" aria-label="Previous project">
+          &lt;
+        </button>
 
-          <p>A Windows-based ERP application that centralizes employee management, payroll, inventory, 
-            purchasing, and other business operations, providing a unified platform for managing enterprise resources 
-            and workflows. My primary responsibility was the development of the Inventory Management module, 
-            which handled the recording and monitoring of incoming and outgoing products, product pricing, 
-            stock quantities, and warehouse inventory levels.</p>
+        <div class="carousel-window">
+          <div class="carousel-track">
+
+            <article class="project-card carousel-card" data-position="left">
+
+                <button class="expand-btn" aria-label="Expand project">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                </button>
+
+                <div class="project-number">01</div>
+
+                <h3>ERP | On The Job Training</h3>
+
+                <p>
+                    A Windows-based ERP application that centralizes employee management,
+                    payroll, inventory, purchasing, and other business operations,
+                    providing a unified platform for managing enterprise resources
+                    and workflows. My primary responsibility was the development of
+                    the Inventory Management module, which handled the recording and
+                    monitoring of incoming and outgoing products, product pricing,
+                    stock quantities, and warehouse inventory levels.
+                </p>
+
+                <a
+                    href="https://www.linkedin.com/company/smpc-pumps/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                >
+                    View Company
+                </a>
+
+            </article>
+
+
+            <article class="project-card carousel-card" data-position="center">
+
+                <button class="expand-btn" aria-label="Expand project">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                </button>
+
+                <div class="project-number">02</div>
+
+                <h3>Slapnote</h3>
+
+                <p>
+                    A full-stack social networking web application designed to
+                    facilitate user interaction and content sharing. The platform
+                    features user authentication, profile management, post creation,
+                    image sharing, comments, reactions, and user interactions.
+                    The project provided hands-on experience in integrating the
+                    frontend, backend APIs, and database while developing practical
+                    skills in full-stack web development and backend architecture.
+                </p>
+
+                <span class="project-link">
+                    Full-Stack Project
+                </span>
+
+            </article>
+
+
+            <article class="project-card carousel-card" data-position="right">
+
+                <button class="expand-btn" aria-label="Expand project">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                </button>
+
+                <div class="project-number">03</div>
+
+                <h3>Smart Shed | Final Thesis</h3>
+
+                <p>
+                    This study focuses on the development of a Windows-based
+                    AI-assisted surveillance and emergency response system designed
+                    for a school environment. The system incorporates AI-powered
+                    image detection, emergency gesture recognition as well as a
+                    physical emergency button, and automated surveillance event
+                    logging to enhance situational awareness, facilitate rapid
+                    emergency response, and maintain a reliable record of detected
+                    incidents within the designated area.
+                </p>
+
+                <a href="#education" class="project-link">
+                    View Education
+                </a>
+
+            </article>
+
         </div>
 
-        <div class="project-card">
-          <h3>Slapnote</h3>
-
-          <p>A full-stack social networking web application designed to facilitate user interaction and content sharing. 
-            The platform features user authentication, profile management, post creation, image sharing, comments, 
-            reactions, and user interactions. The project provided hands-on experience in integrating the frontend, 
-            backend APIs, and database while developing practical skills in full-stack web development and backend architecture.</p>
         </div>
 
-        <div class="project-card">
-          <h3 title="University of Caloocan City"
-              onclick="location.href='#education'">
-            Smart Shed | Final Thesis
-          </h3>
-
-          <p>This study focuses on the development of a Windows-based AI-assisted surveillance 
-            and emergency response system designed for a school environment. The system incorporates AI-powered image 
-            detection, emergency gesture recognition as well as a physical emergency button, and automated surveillance 
-            event logging to enhance situational awareness, facilitate rapid emergency response, and maintain 
-            a reliable record of detected incidents within the designated area.</p>
-        </div>
+        <button class="carousel-btn carousel-next" aria-label="Next project">
+          &gt;
+        </button>
 
       </div>
     </section>
 
-
     <section id="skills" class="skills">
       <h2>Skills</h2>
+
       <div class="container">
         <ul class="skill-list">
           <li>HTML</li>
@@ -98,10 +176,14 @@
       <h2>Education</h2>
 
       <div class="container education-grid">
+
         <div class="education-card">
           <h3>College</h3>
-          <p title="Click to jump to University of Caloocan City"
-            onclick="window.open('https://ucc-caloocan.edu.ph/', '_blank')">
+
+          <p
+            title="Click to jump to University of Caloocan City"
+            onclick="window.open('https://ucc-caloocan.edu.ph/', '_blank')"
+          >
             <b>University of Caloocan City</b>
             <br>
             Bachelor of Science in Computer Science
@@ -110,25 +192,47 @@
 
         <div class="education-card">
           <h3>Senior High School</h3>
-          <p title="Click to jump to Bernadette College of Valenzuela"
-            onclick="window.open('https://sbcv.edu.ph/', '_blank')">
+
+          <p
+            title="Click to jump to Bernadette College of Valenzuela"
+            onclick="window.open('https://sbcv.edu.ph/', '_blank')"
+          >
             <b>Bernadette College of Valenzuela</b>
             <br>
             Information and Communication Technology (ICT)
           </p>
         </div>
+
       </div>
     </section>
 
     <section id="contact" class="contact">
       <h2>Contact</h2>
+
       <div class="container">
-        <p><a href="mailto:aninaojohnchristian.work@gmail.com">Gmail</a></p>
-        <p><a href="https://www.linkedin.com/in/john-christian-aninao/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        <p>
+          <i class="bi bi-envelope"></i>&nbsp;
+          <a href="mailto:aninaojohnchristian.work@gmail.com">
+            Gmail
+          </a>
+        </p>
+
+        <p>
+          <i class="bi bi-linkedin"></i>&nbsp;
+          <a
+            href="https://www.linkedin.com/in/john-christian-aninao/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </p>
       </div>
     </section>
 
   </main>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
