@@ -703,6 +703,10 @@ main {
         --card-width: 390px;
         --card-gap: 35px;
     }
+
+    section {
+        margin: auto 25px;
+    }
 }
 
 @media (max-width: 1050px) {
@@ -759,6 +763,10 @@ main {
         --card-height: 420px;
         --card-gap: 30px;
     }
+
+    section {
+        margin: auto 20px;
+    }
 }
 
 @media (max-width: 880px) {
@@ -778,6 +786,10 @@ main {
         --card-width: 340px;
         --card-height: 420px;
         --card-gap: 25px;
+    }
+
+    section {
+        margin: auto 18px;
     }
 }
 
@@ -903,6 +915,10 @@ main {
 
     .modal-project-description {
         font-size: 0.9rem;
+    }
+
+    section {
+        margin: auto 5px;
     }
 }
 
