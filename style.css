@@ -429,11 +429,27 @@ main {
 
 .skill-list li {
     padding: 8px 14px;
-    border: 1px solid #00ADB5;
+    border: 1px solid;
     border-radius: 999px;
     background-color: #222831;
     color: #EEEEEE;
     font-size: 0.95rem;
+}
+
+li.frontend-skill {
+    border-color: #A8D5B5;
+}
+
+li.backend-skill {
+    border-color: #E6C96A;
+}
+
+li.database-skill {
+    border-color: #C5A8DC;
+}
+
+li.infrastructure-skill {
+    border-color: #A8C7E3;
 }
 
 /* Contact */
@@ -623,12 +639,12 @@ main {
         box-shadow 0.2s ease;
 }
 
-.modal-tech-tag[data-category="frontend"] {
+.modal-tech-tag[data-category="frontend"]{
     background-color: #DDF3E4;
     border-color: #A8D5B5;
 }
 
-.modal-tech-tag[data-category="backend"] {
+.modal-tech-tag[data-category="backend"]{
     background-color: #FFF3CD;
     border-color: #E6C96A;
 }
