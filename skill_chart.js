@@ -17,12 +17,12 @@ const skillRatings = [
     {
         name: "React",
         category: "frontend",
-        rating: 60
+        rating: 50
     },
     {
         name: "CSS",
         category: "frontend",
-        rating: 75
+        rating: 70
     },
     {
         name: "HTML",
@@ -32,7 +32,7 @@ const skillRatings = [
     {
         name: "Python",
         category: "frontend",
-        rating: 80
+        rating: 70
     },
     {
         name: "PyQt",
@@ -42,22 +42,22 @@ const skillRatings = [
     {
         name: "OpenCV",
         category: "frontend",
-        rating: 65
+        rating: 20
     },
     {
         name: "YOLOv8 Small",
         category: "frontend",
-        rating: 55
+        rating: 25
     },
     {
         name: "PySerial",
         category: "frontend",
-        rating: 60
+        // rating: 20
     },
     {
         name: "Folium (Map)",
         category: "frontend",
-        rating: 50
+        // rating: 50
     },
 
     {
@@ -73,7 +73,7 @@ const skillRatings = [
     {
         name: "Java",
         category: "backend",
-        rating: 70
+        rating: 80
     },
     {
         name: "Spring Boot",
@@ -83,17 +83,17 @@ const skillRatings = [
     {
         name: "Spring MVC",
         category: "backend",
-        rating: 60
+        rating: 50
     },
     {
         name: "Spring Security",
         category: "backend",
-        rating: 55
+        // rating: 50
     },
     {
         name: "C++ (Arduino)",
         category: "backend",
-        rating: 60
+        rating: 55
     },
 
     {
@@ -104,7 +104,7 @@ const skillRatings = [
     {
         name: "PostgreSQL",
         category: "database",
-        rating: 65
+        rating: 75
     },
 
     {
@@ -115,7 +115,7 @@ const skillRatings = [
     {
         name: "Amazon Web Services (AWS)",
         category: "infrastructure",
-        rating: 55
+        // rating: 55
     },
     {
         name: "Docker",
@@ -125,7 +125,7 @@ const skillRatings = [
     {
         name: "AWS S3",
         category: "infrastructure",
-        rating: 55
+        // rating: 55
     }
 ];
 
