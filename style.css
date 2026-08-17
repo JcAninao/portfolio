@@ -1143,8 +1143,12 @@ li.infrastructure-skill {
         text-align: center;
     }
     
+    p {
+        margin: 1% auto;
+    }
+
     section p {
-        margin: auto 1%;
+        margin: 1% 1%;
     }
 
     .profile-container {
@@ -1274,8 +1278,12 @@ li.infrastructure-skill {
         padding: 20px 12px;
     }
     
+    p {
+        margin: 5px auto;
+    }
+
     section p {
-        margin: auto 1%;
+        margin: 5px 5px;
     }
 
     .profile-container {
