@@ -1142,6 +1142,10 @@ li.infrastructure-skill {
         padding: 25px 15px;
         text-align: center;
     }
+    
+    section p {
+        margin: auto 1%;
+    }
 
     .profile-container {
         width: 110px;
@@ -1269,80 +1273,9 @@ li.infrastructure-skill {
     header {
         padding: 20px 12px;
     }
-
-    .profile-container {
-        width: 95px;
-        height: 95px;
-    }
-
-    header h1 {
-        font-size: 1.15rem;
-    }
-
-    header nav {
-        margin-top: 15px;
-    }
-
-    .nav-links {
-        gap: 10px 14px;
-        font-size: 0.85rem;
-    }
-
-    .about,
-    .projects,
-    .skills,
-    .contact,
-    .education {
-        padding: 15px;
-        border-radius: 8px;
-    }
-
-    .project-carousel {
-        --card-width: 70vw;
-        --card-height: 410px;
-        --card-gap: 5px;
-
-        height: 410px;
-    }
-
-    .carousel-card {
-        padding: 22px;
-        border-radius: 12px;
-    }
-
-    .carousel-card[data-position="left"],
-    .carousel-card[data-position="right"] {
-        height: 80%;
-        opacity: 0.42;
-    }
-
-    .project-card h3 {
-        font-size: 1.15rem;
-    }
-
-    .project-card p {
-        font-size: 0.88rem;
-        line-height: 1.55;
-    }
-
-    .expand-btn {
-        top: 10px;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        font-size: 15px;
-    }
-
-    .carousel-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-        background-color: rgba(34, 40, 49, 0.8);
-    }
-}
-@media (max-width: 430px) {
-    header {
-        padding: 20px 12px;
+    
+    section p {
+        margin: auto 1%;
     }
 
     .profile-container {
