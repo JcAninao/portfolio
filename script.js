@@ -56,7 +56,7 @@ const projects = [
             infrastructure: [
                 "Docker",
                 "AWS S3",
-                "OCI Logging"
+                // "OCI Logging"
             ]
         },
         mainFeatures: [
