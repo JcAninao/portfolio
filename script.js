@@ -404,12 +404,14 @@ function openProjectModal(project) {
     );
 
     projectModal.classList.add("active");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
+    // document.body.style.overflow = "hidden";
 }
 
 function closeProjectModal() {
     projectModal.classList.remove("active");
-    document.body.style.overflow = "";
+    document.body.classList.remove("modal-open");
+    // document.body.style.overflow = "";
 }
 
 track.addEventListener("click", event => {

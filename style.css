@@ -122,8 +122,6 @@ main {
     color: #EEEEEE;
 }
 
-/* Project Carousel */
-
 .project-carousel {
     --card-width: 420px;
     --card-height: 430px;
@@ -318,8 +316,6 @@ main {
     border-color: #00ADB5;
 }
 
-/* Carousel Buttons */
-
 .expand-btn {
     position: absolute;
     top: 14px;
@@ -390,8 +386,6 @@ main {
     right: 10px;
 }
 
-/* Education */
-
 .project-grid,
 .education-grid {
     display: grid;
@@ -416,7 +410,6 @@ main {
     cursor: pointer;
 }
 
-/* Skills */
 
 .skill-list {
     display: flex;
@@ -452,8 +445,6 @@ li.infrastructure-skill {
     border-color: #A8C7E3;
 }
 
-/* Contact */
-
 .contact p {
     margin: 0 0 10px;
 }
@@ -461,8 +452,6 @@ li.infrastructure-skill {
 .contact a {
     color: #00ADB5;
 }
-
-/* Project Modal */
 
 .project-modal {
     position: fixed;
@@ -700,7 +689,306 @@ li.infrastructure-skill {
     transform: translateY(0);
 }
 
-/* Responsive */
+.skills-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.skills-heading h2 {
+    margin: 0;
+}
+
+.skills-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border: 1px solid #00ADB5;
+    border-radius: 8px;
+
+    background-color: rgba(0, 173, 181, 0.12);
+    color: #00ADB5;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(0, 173, 181, 0.18);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.skills-btn:hover {
+    background-color: #00ADB5;
+    border-color: #00ADB5;
+    color: #EEEEEE;
+
+    box-shadow:
+        0 0 14px rgba(0, 173, 181, 0.45);
+
+    transform: scale(1.08);
+}
+
+.skills-btn:active {
+    transform: scale(0.94);
+}
+
+.skills-chart-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.skills-chart-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.skills-chart-overlay {
+    position: absolute;
+    inset: 0;
+
+    background-color: rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(4px);
+}
+
+.skills-chart-card {
+    position: relative;
+    z-index: 1;
+
+    width: min(650px, 100%);
+    max-height: 85vh;
+
+    padding: 30px;
+
+    overflow-y: auto;
+
+    border-radius: 16px;
+
+    background-color: #EEEEEE;
+    color: #222831;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    opacity: 0;
+
+    transition:
+        transform 0.3s cubic-bezier(.22, .61, .36, 1),
+        opacity 0.3s ease;
+}
+
+.skills-chart-modal.active .skills-chart-card {
+    transform:
+        translateY(0)
+        scale(1);
+
+    opacity: 1;
+}
+
+
+.skills-chart-card::-webkit-scrollbar {
+    display: none;
+}
+
+.skills-chart-card h2 {
+    margin: 0 45px 25px 0;
+
+    color: #222831;
+
+    font-size: 1.6rem;
+}
+
+.skills-chart-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: rgba(34, 40, 49, 0.1);
+
+    color: #222831;
+
+    font-size: 25px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.skills-chart-close:hover {
+    background-color: #00ADB5;
+
+    color: #EEEEEE;
+
+    transform: scale(1.08);
+}
+
+.skills-chart {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.skill-rating-group {
+    width: 100%;
+}
+
+.skill-rating-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 5px;
+
+    font-size: 0.88rem;
+}
+
+.skill-rating-name {
+    min-width: 0;
+
+    overflow: hidden;
+
+    color: #222831;
+
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.skill-rating-percentage {
+    flex-shrink: 0;
+
+    color: #00ADB5;
+
+    font-size: 0.78rem;
+}
+
+.skill-rating-practice {
+    flex-shrink: 0;
+
+    color: #8A8F98;
+
+    font-size: 0.75rem;
+}
+
+.skill-rating-line {
+    position: relative;
+
+    width: 100%;
+    height: 20px;
+}
+
+.skill-rating-line::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 3px;
+
+    border-radius: 999px;
+
+    background-color: #D1D3D6;
+
+    transform: translateY(-50%);
+}
+
+.skill-rating-fill {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: var(--rating, 0%);
+    height: 3px;
+
+    border-radius: 999px;
+
+    transform:
+        translateY(-50%)
+        scaleX(0);
+
+    transform-origin: left center;
+
+    transition:
+        transform 0.6s cubic-bezier(.22, .61, .36, 1);
+}
+
+.skills-chart-modal.active .skill-rating-fill {
+    transform:
+        translateY(-50%)
+        scaleX(1);
+}
+
+.frontend-rating {
+    background-color: #A8D5B5;
+}
+
+.backend-rating {
+    background-color: #E6C96A;
+}
+
+.database-rating {
+    background-color: #C5A8DC;
+}
+
+.infrastructure-rating {
+    background-color: #A8C7E3;
+}
 
 @media (max-width: 1200px) {
     header {
